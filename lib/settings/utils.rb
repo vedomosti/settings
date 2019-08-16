@@ -1,6 +1,6 @@
 module Settings
   module Utils
-    DEFAULT_ENVIRONMENTS = %i(development test production)
+    DEFAULT_ENVIRONMENTS = %i(development test staging production)
     
     class << self
       def environments

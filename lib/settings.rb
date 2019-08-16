@@ -1,5 +1,6 @@
 require 'settings/version'
 require 'hashie/mash'
+require 'hashie/logger'
 require 'active_support/core_ext/hash/deep_merge'
 require 'yaml'
 require 'settings/utils'
@@ -37,6 +38,7 @@ module Settings
     
     def _mashes
       @_mashes ||= begin
+        Hashie.logger = Logger.new(nil)
         Utils.environments.each_with_object(Hash.new) do |environment, hash|
           env_settings = Utils.load_settings_for(environment)
           hash[environment] = Hashie::Mash.new(env_settings)
